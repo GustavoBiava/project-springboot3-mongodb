@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import free.biava.springmongo.entities.User;
+import free.biava.springmongo.dto.UserDTO;
 import free.biava.springmongo.services.UserService;
 
 @RestController
@@ -19,8 +19,9 @@ public class UserResource {
 	private UserService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll(){
-		return ResponseEntity.ok().body(service.findAll());
+	public ResponseEntity<List<UserDTO>> findAll(){
+		List<UserDTO> list = service.findAll().stream().map(user -> new UserDTO(user)).toList();
+		return ResponseEntity.ok().body(list);
 	}
 
 }
