@@ -46,6 +46,19 @@ public class UserService {
 		}
 	}
 	
+	public User update(String id, User user) {
+		Optional<User> obj = repository.findById(id);
+		User entity = obj.orElseThrow(() -> new ResourceNotFoundExcepetion(id));
+		updateData(entity, user);
+		return repository.save(entity);
+	}
+	
+	private void updateData(User entity, User user) {
+		entity.setName(user.getName());
+		entity.setEmail(user.getEmail());
+		
+	}
+
 	public User fromDTO(UserDTO userDTO) {
 		return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
 	}
