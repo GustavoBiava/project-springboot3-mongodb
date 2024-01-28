@@ -40,6 +40,7 @@ public class DatabaseSeeding implements CommandLineRunner{
 
 		postRepository.saveAll(Arrays.asList(post, post2));
 		
+		user.getPosts().addAll(Arrays.asList(post, post2));
+		userRepository.save(user);
 	}
-
 }
