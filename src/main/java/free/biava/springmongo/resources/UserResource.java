@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import free.biava.springmongo.dto.UserDTO;
+import free.biava.springmongo.entities.Post;
 import free.biava.springmongo.entities.User;
 import free.biava.springmongo.services.UserService;
 
@@ -57,5 +58,11 @@ public class UserResource {
 		User user = service.fromDTO(userDTO);
 		user = service.update(id, user);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value = "/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+		User user = service.findById(id);
+		return ResponseEntity.ok().body(user.getPosts());
 	}
 }
