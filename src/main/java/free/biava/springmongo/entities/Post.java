@@ -20,7 +20,7 @@ public class Post implements Serializable{
 	@Id
 	private String id;
 	private Instant moment;
-	private String tittle;
+	private String title;
 	private String body;
 	
 	private AuthorDTO author;
@@ -29,10 +29,10 @@ public class Post implements Serializable{
 	public Post() {
 	}
 
-	public Post(String id, Instant moment, String tittle, String body, AuthorDTO author) {
+	public Post(String id, Instant moment, String title, String body, AuthorDTO author) {
 		this.id = id;
 		this.moment = moment;
-		this.tittle = tittle;
+		this.title = title;
 		this.body = body;
 		this.author = author;
 	}
@@ -53,12 +53,12 @@ public class Post implements Serializable{
 		this.moment = moment;
 	}
 
-	public String getTittle() {
-		return tittle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTittle(String tittle) {
-		this.tittle = tittle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getBody() {
