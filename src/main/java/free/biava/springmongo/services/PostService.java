@@ -21,7 +21,7 @@ public class PostService {
 		return post.orElseThrow(() -> new ResourceNotFoundExcepetion(id));
 	}
 	
-	public List<Post> findByTittle(String text) {
-		return repository.findByTitleContainingIgnoreCase(text);
+	public List<Post> findByTitle(String text) {
+		return repository.findByTitle(text);
 	}
 }
