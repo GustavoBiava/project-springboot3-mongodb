@@ -1,5 +1,6 @@
 package free.biava.springmongo.resources;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,13 @@ public class PostResource {
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
 		text = URL.decodeParameter(text);
 		return ResponseEntity.ok().body(service.findByTitle(text));
+	}
+	
+	@GetMapping(value = "/testsearch")
+	public ResponseEntity<List<Post>> testSearch(@RequestParam(value = "text", defaultValue = "") String text, @RequestParam(value = "minDate", defaultValue = "") String minDate, @RequestParam(value = "maxDate", defaultValue = "") String maxDate) {
+		text = URL.decodeParameter(text);
+		Instant min = URL.convertDate(minDate, Instant.parse("1970-01-01T00:00:00Z"));
+		Instant max = URL.convertDate(maxDate, Instant.now());
+		return ResponseEntity.ok().body(service.testSearch(text, min, max));
 	}
 }

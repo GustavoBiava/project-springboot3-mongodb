@@ -1,5 +1,7 @@
 package free.biava.springmongo.services;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +25,10 @@ public class PostService {
 	
 	public List<Post> findByTitle(String text) {
 		return repository.findByTitle(text);
+	}
+	
+	public List<Post> testSearch(String text, Instant minDate, Instant maxDate) {
+		maxDate = maxDate.plus(1, ChronoUnit.DAYS);
+		return repository.testSearch(text, minDate, maxDate);
 	}
 }
